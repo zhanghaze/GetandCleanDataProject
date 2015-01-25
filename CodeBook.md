@@ -1,3 +1,5 @@
+The process.
+
 1.    Merges the training and the test sets to create one data set.
 2.    Extracts only the measurements on the mean and standard deviation for each measurement. 
 3.    Uses descriptive activity names to name the activities in the data set
@@ -22,6 +24,13 @@ Above is the steps given in on the project page. I would elaborate each step.
    column name "Activity.Subject" and the column name
    then I merge this one data frame with the rest of the data frame by column "Activity.Subject"
 
+The data:
+
+Subject: Factor identify each subject
+Activity: Factor identify each activity.
+
+other names:
+the mean of features.
 
 Done.
    

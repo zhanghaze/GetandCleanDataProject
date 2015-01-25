@@ -60,15 +60,21 @@ getonedf <- function(name) {
     rn <- rownames(tmp)
     cn <- colnames(tmp)
     tmpnum <- as.vector(tmp)
-    colnam <- NULL;
+    colnamActivity <- NULL;
+    colnamSubject <- NULL;
     for(tcn in colnames(tmp)) {
         for(trn in rownames(tmp)) {
-            colnam <- c(colnam, paste0(trn,".",tcn))
+            colnamActivity <- c(colnamActivity, trn)
+            colnamSubject <- c(colnamSubject, tcn)
+            #colnam <- c(colnam, paste0(trn,".",tcn))
         }
     }
-    colnam <- as.factor(colnam)
-    dfx <- data.frame(colnam,tmpnum)
-    colnames(dfx) <- c("Activity.Subject",name)
+    #colnam <- as.factor(colnam)
+    colnamActivity <- as.factor(colnamActivity);
+    colnamSubject <- as.factor(colnamSubject);
+    #dfx <- data.frame(colnam,tmpnum)
+    dfx <- data.frame(colnamSubject,colnamActivity, tmpnum);
+    colnames(dfx) <- c("Subject","Activity",name)
     return(dfx)
 }
 
@@ -78,7 +84,8 @@ for(name in names(fullX)){
     if(is.null(cleaneddf)) {
         cleaneddf <- getonedf(name)
     } else {
-        cleaneddf <- merge(cleaneddf, getonedf(name), by.x = "Activity.Subject", by.y = "Activity.Subject", all = TRUE)
+        #cleaneddf <- merge(cleaneddf, getonedf(name), by.x = "Activity.Subject", by.y = "Activity.Subject", all = TRUE)
+        cleaneddf <- merge(cleaneddf, getonedf(name), all = TRUE)
     }
 }
 
